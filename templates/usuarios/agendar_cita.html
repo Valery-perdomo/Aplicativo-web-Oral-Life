@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agendar citas | Oral Life</title>
+  <link rel="stylesheet" href="{% static 'css/agendar_cita.css' %}">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-titulo">
+        <img src="{% static 'imagenes/logo-oral-life.jpg' %}" alt="Logo Consultorio" class="logo">
+      </div>
+      <nav>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'agendar_cita' %}">Citas</a>
+        <a href="{% url 'historia_clinica' %}">Historia clínica</a>
+        <a href="{% url 'chat' %}">Mensaje</a>
+      </nav>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Cerrar sesión</button>
+      </form>
+    </div>
+  </header>
+
+  <main>
+    <h2><strong>Hola {{ nombre_paciente|title }}</strong></h2>
+    
+    {% if messages %}
+  <div class="alert-container">
+    {% for message in messages %}
+      <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+    <div class="section-grid">
+      <div class="card proxima-cita">
+        <strong>Próxima cita:</strong><br>
+
+        {% if proxima_cita %}
+          <p>{{ proxima_cita.fecha|date:"d/m/Y" }} - {{ proxima_cita.hora|time:"H:i A" }}</p>
+          {% if proxima_cita.estado == 'pendiente' %}
+            <small>(Pendiente de confirmación)</small><br>
+          {% elif proxima_cita.estado == 'confirmada' %}
+            <small style="color:#16a34a;">(Confirmada)</small><br>
+          {% elif proxima_cita.estado == 'cancelada' %}
+            <small style="color:#dc2626;">(Cancelada)</small><br>
+          {% endif %}
+        {% else %}
+          <span>No tienes una próxima cita.</span><br>
+        {% endif %}
+
+        <div class="botones-cita">
+          <button class="btn" id="btnMostrarFormulario">Agendar cita</button>
+          <button class="btn" id="btnCancelar" onclick="cancelarCita()" style="display: none;">Cancelar cita</button>
+        </div>
+
+        <form id="formCita" action="{% url 'agendar_cita' %}" method="post" style="display: none; margin-top: 15px;">
+          {% csrf_token %}
+          <div class="form-flex">
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha" required>
+
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" name="hora" required min="08:00" max="18:00">
+
+            <label for="procedimiento">Procedimiento:</label>
+            <select name="procedimiento" id="procedimiento" required>
+              <option value="valoracion">Valoración </option>
+              <option value="exodoncia_simple">Exodoncia Simple</option>
+              <option value="exodoncia_quirurgica">Exodoncia Quirúrgica</option>
+              <option value="montaje_ortodoncia">Montaje Ortodoncia</option>
+              <option value="control_ortodoncia">Control Ortodoncia</option>
+              <option value="calza">Calza</option>
+              <option value="higiene">Higiene</option>
+              <option value="rehabilitacion">Rehabilitación</option>
+              <option value="implantes">Implantes</option>
+              <option value="aclaramiento">Aclaramiento</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn">Confirmar cita</button>
+        </form>
+      </div>
+
+      <section class="lista-citas card">
+        <h3>Mis citas registradas:</h3>
+        <ul class="lista-citas-ul">
+          {% for cita in citas %}
+            {% if cita.estado != 'cancelada' %}
+            <li class="item-cita">
+              <div class="info-cita">
+                {{ cita.fecha|date:"d/m/Y" }} a las {{ cita.hora|time:"H:i" }} —
+              <span class="procedimiento">{{ cita.get_procedimiento_display }}</span> —
+              <strong>
+              {% if cita.estado == 'confirmada' %}
+              <span class="estado confirmada">Confirmada</span>
+              {% else %}
+              <span class="estado pendiente">Pendiente</span>
+              {% endif %}
+              </strong>
+
+              </div>
+
+              <div class="acciones">
+                {% if cita.estado == 'pendiente' %}
+                  <form method="post" action="{% url 'actualizar_estado_cita_paciente' cita.id 'confirmada' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-flotante confirmar">✓</button>
+                  </form>
+                {% endif %}
+                <form method="post" action="{% url 'actualizar_estado_cita_paciente' cita.id 'cancelada' %}" onsubmit="return confirmarCancelacion();">
+                  {% csrf_token %}
+                  <button type="submit" class="btn-flotante cancelar">✕</button>
+                </form>
+              </div>
+            </li>
+            {% endif %}
+          {% empty %}
+            <li>No tienes citas registradas.</li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("btnMostrarFormulario").addEventListener("click", function () {
+      const form = document.getElementById("formCita");
+      const btnCancelar = document.getElementById("btnCancelar");
+      const visible = form.style.display === "block";
+
+      form.style.display = visible ? "none" : "block";
+      btnCancelar.style.display = visible ? "none" : "inline-block";
+    });
+
+    function cancelarCita() {
+      document.getElementById("formCita").style.display = "none";
+      document.getElementById("btnCancelar").style.display = "none";
+    }
+
+    function confirmarCancelacion() {
+      return confirm("¿Deseas cancelar esta cita?");
+    }
+  </script>
+
+  <script src="{% static 'js/paciente.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Historias Clínicas | Oral Life</title>
+    <link rel="stylesheet" href="{% static 'css/odo_historial.css' %}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-left">
+        <img src="{% static 'imagenes/logo-oral-life.jpg' %}" alt="Oral Life" class="logo">
+    </div>
+    <ul class="navbar-links">
+        <li><a href="{% url 'odontologo_home' %}">Inicio</a></li>
+        <li><a href="{% url 'odo_citas' %}">Citas</a></li>
+        <li><a href="{% url 'ver_historia_odontologo' %}">Historias Clínicas</a></li>
+
+    </ul>
+    <form action="{% url 'logout' %}" method="post" class="logout-form">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Cerrar sesión</button>
+    </form>
+</nav>
+
+<main class="container">
+    <h1>Historias Clínicas Registradas</h1>
+
+    {% if historias %}
+    <table class="historia-table">
+      <thead>
+        <tr>
+          <th>PACIENTE</th>
+          <th>FECHA</th>
+          <th>MOTIVO</th>
+          <th>DIAGNÓSTICO</th>
+          <th>ACCIÓN</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for historia in historias %}
+        <tr>
+          <td>{{ historia.paciente.nombre }}</td>
+          <td>{{ historia.fecha|date:"d/m/Y" }}</td>
+          <td>{{ historia.motivo_consulta }}</td>
+          <td>{{ historia.diagnostico }}</td>
+          <td>
+            <a href="{% url 'detalle_historia_odontologo' historia.id %}" class="btn-ver">Ver</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% else %}
+    <p>No hay historias clínicas registradas aún.</p>
+    {% endif %}
+  </main>
+</body>
+</html>

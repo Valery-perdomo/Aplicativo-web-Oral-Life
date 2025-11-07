@@ -1,0 +1,186 @@
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: #d1f9ff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: #333;
+}
+
+main {
+  padding: 40px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h2 {
+  color: #222;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+nav.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 10px 40px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-left img.logo {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.navbar-links a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #4ba3ff; 
+}
+
+.logout-form button {
+  background-color: white;
+  color: #000;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-form button:hover {
+  background-color: #ff5d5d;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+thead {
+  background: linear-gradient(90deg, #4ba3ff, #6eb4ff);
+  color: white;
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+td {
+  font-size: 14px;
+}
+
+tr:hover {
+  background-color: #ecf8ff;
+  transition: background-color 0.3s ease;
+}
+
+.estado {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.estado.confirmada {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.estado.cancelada {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+td form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-cancelar {
+  background: linear-gradient(135deg, #ff8585, #ff3d3d);
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 10px rgba(255, 100, 100, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  background: linear-gradient(135deg, #ff5757, #e11d48);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(225, 29, 72, 0.35);
+}
+
+.btn-cancelar:active {
+  transform: scale(0.96);
+  box-shadow: 0 3px 8px rgba(225, 29, 72, 0.3);
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 20px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .btn-cancelar {
+    width: 90%;
+    margin: 6px 0;
+  }
+}

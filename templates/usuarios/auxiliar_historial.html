@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Historia Clínica Odontológica | Oral Life</title>
+    <link rel="stylesheet" href="{% static 'css/auxiliar_historial.css' %}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="{% static 'imagenes/logo-oral-life.jpg' %}" alt="Oral Life" class="logo">
+        </div>
+        <ul class="navbar-links">
+        <li><a href="{% url 'auxiliar_home' %}">Inicio</a></li>
+        <li><a href="{% url 'auxiliar_citas' %}">Citas</a></li>
+        <li><a href="{% url 'crear_historia_clinica' %}">Historia Clínica</a></li>
+        <li><a href="{% url 'lista_historias_clinicas' %}">Lista Historias</a></li>
+        <li><a href="{% url 'lista_chats' %}" class="active">Mensajes</a></li>
+        </ul>
+
+        <form action="{% url 'logout' %}" method="post" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">Cerrar sesión</button>
+        </form>
+    </nav>
+
+    <div class="container">
+        <h1>Historia Clínica Odontológica</h1>
+
+        <form method="post" class="historia-form">
+            {% csrf_token %}
+
+            <details open>
+                <summary>Datos personales del paciente</summary>
+                <div class="section-grid">
+
+                    <label>Seleccione el paciente:
+                        <select name="paciente" required>
+                            <option value="">Seleccione un paciente</option>
+                            {% for p in pacientes %}
+                                <option value="{{ p.id }}">{{ p.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+
+                    <label>Nombre y apellidos<input type="text" name="nombre"></label>
+                    <label>Fecha de nacimiento<input type="date" name="fecha_nacimiento"></label>
+                    <label>Edad<input type="number" name="edad"></label>
+                    <label>Sexo
+                        <select name="sexo">
+                            <option value="">Seleccione</option>
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select>
+                    </label>
+                    <label>Tipo de identificación<input type="text" name="tipo_id"></label>
+                    <label>N° de identificación<input type="text" name="numero_id"></label>
+                    <label>Estado civil<input type="text" name="estado_civil"></label>
+                    <label>Dirección<input type="text" name="direccion"></label>
+                    <label>Teléfono<input type="text" name="telefono"></label>
+                    <label>Ocupación<input type="text" name="ocupacion"></label>
+                    <label>Nivel educativo<input type="text" name="nivel_educativo"></label>
+                    <label>Nivel socioeconómico<input type="text" name="nivel_socioeconomico"></label>
+                    <label>Nombre del contacto de emergencia<input type="text" name="contacto_emergencia"></label>
+                    <label>Teléfono del contacto de emergencia<input type="text" name="telefono_emergencia"></label>
+                </div>
+            </details>
+
+            <details>
+                <summary>Motivo de consulta</summary>
+                <textarea name="motivo" rows="3" placeholder="Describa el motivo de consulta..."></textarea>
+            </details>
+
+            <details>
+                <summary>Historia de la enfermedad actual</summary>
+                <textarea name="historia_enfermedad" rows="4" placeholder="Describa los síntomas, evolución, tratamientos previos..."></textarea>
+            </details>
+
+            <details>
+                <summary>Antecedentes</summary>
+
+                <h4>4.1 Antecedentes familiares</h4>
+                <div class="checkbox-grid">
+                    <label><input type="checkbox" name="af_card" value="Sí"> Afecciones cardíacas</label>
+                    <label><input type="checkbox" name="af_diab" value="Sí"> Diabetes Mellitus</label>
+                    <label><input type="checkbox" name="af_hiper" value="Sí"> Hipertensión</label>
+                    <label><input type="checkbox" name="af_epile" value="Sí"> Epilepsia</label>
+                    <label><input type="checkbox" name="af_cancer" value="Sí"> Cáncer</label>
+                    <label><input type="text" name="af_otro" placeholder="Otro..."></label>
+                </div>
+
+                <h4>4.2 Antecedentes personales / anamnesis</h4>
+                <textarea name="antecedentes_personales" rows="4"></textarea>
+
+                <h4>4.3 Antecedente toxicológico</h4>
+                <div class="checkbox-grid">
+                    <label><input type="checkbox" name="tox_fuma"> Fuma</label>
+                    <label><input type="checkbox" name="tox_alcohol"> Ingiere bebidas alcohólicas</label>
+                    <label><input type="checkbox" name="tox_drogas"> Usa drogas</label>
+                    <label><input type="checkbox" name="tox_alergico_anestesia"> Alergia a anestesia</label>
+                    <label><input type="checkbox" name="tox_medicamento"> Toma medicación</label>
+                </div>
+            </details>
+
+            <details>
+                <summary>Examen físico y tejidos blandos</summary>
+                <textarea name="examen_fisico" rows="4" placeholder="Describa hallazgos, palpación muscular, mucosas, encías, labios, etc."></textarea>
+            </details>
+
+            <details open>
+                <summary>Odontograma</summary>
+                <div class="odontograma-section">
+                    <img src="{% static 'imagenes/odontograma.png' %}" alt="Odontograma" class="odontograma-img">
+                    <label>Observaciones / Detalles:
+                        <textarea name="odontograma_detalle" rows="4" placeholder="Ejemplo: caries 14 rojo, obturación 36 azul, prótesis 22..."></textarea>
+                    </label>
+                </div>
+            </details>
+
+            <details>
+                <summary>Análisis periodontal</summary>
+                <textarea name="analisis_periodontal" rows="4" placeholder="Resultados de bolsas periodontales, movilidad, cálculos, etc."></textarea>
+            </details>
+
+            <details>
+                <summary>Índice de placa bacteriana</summary>
+                <label>Higiene oral:
+                    <select name="higiene">
+                        <option>Buena</option>
+                        <option>Regular</option>
+                        <option>Mala</option>
+                    </select>
+                </label>
+            </details>
+
+            <details>
+                <summary>Diagnósticos</summary>
+                <textarea name="diagnosticos" rows="4"></textarea>
+            </details>
+
+            <details>
+                <summary>Pronóstico</summary>
+                <label><input type="radio" name="pronostico" value="bueno"> Bueno</label>
+                <label><input type="radio" name="pronostico" value="regular"> Regular</label>
+                <label><input type="radio" name="pronostico" value="malo"> Malo</label>
+                <label><input type="radio" name="pronostico" value="reservado"> Reservado</label>
+            </details>
+
+            <details>
+                <summary>Plan de tratamiento</summary>
+                <table class="tratamiento-table">
+                    <thead>
+                        <tr>
+                            <th>Diente</th><th>Código</th><th>Procedimiento</th><th>Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in "12345" %}
+                        <tr>
+                            <td><input type="text" name="diente_{{i}}"></td>
+                            <td><input type="text" name="codigo_{{i}}"></td>
+                            <td><input type="text" name="procedimiento_{{i}}"></td>
+                            <td><input type="text" name="costo_{{i}}"></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+
+            <details>
+                <summary>Firmas</summary>
+                <label>Firma del paciente<input type="text" name="firma_paciente"></label>
+                <label>Firma del odontólogo<input type="text" name="firma_odontologo"></label>
+                <label>Fecha<input type="date" name="fecha_firma"></label>
+            </details>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-guardar">Guardar Historia Clínica</button>
+            <a href="{% url 'lista_historias_clinicas' %}" class="btn-volver"></a>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

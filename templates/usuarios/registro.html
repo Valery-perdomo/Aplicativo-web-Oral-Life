@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registro</title>
+    <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+</head>
+<body>
+    <div class="registro-box">
+        <img src="{% static 'imagenes/logo-oral-life.jpg' %}" alt="Logo Consultorio" class="logo">
+        <h2>Regístrate</h2>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="error">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        <form method="post" action="{% url 'registro' %}">
+            {% csrf_token %}
+            <input type="text" name="first_name" placeholder="Nombre" required>
+            <input type="text" name="last_name" placeholder="Apellido" required>
+            <input type="email" name="email" placeholder="Correo Electrónico" required>
+            <input type="password" name="password1" placeholder="Contraseña" required>
+            <input type="password" name="password2" placeholder="Confirmar Contraseña" required>
+            <button type="submit">Registrarse</button>
+        </form>
+        <a href="{% url 'login' %}">¿Ya tienes una cuenta? Inicia sesión</a>
+    </div>
+</body>
+</html>

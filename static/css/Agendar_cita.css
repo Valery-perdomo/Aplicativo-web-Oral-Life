@@ -1,0 +1,335 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #d1f9ff;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #333;
+}
+
+header {
+  background: linear-gradient(to right, white, white);
+  padding: 1px 20px;
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+.logo-titulo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 10px;
+  object-fit: contain;
+  display: block;
+}
+
+nav a {
+  color: black;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #6eb4ff;
+}
+
+form button {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #ff5d5d;
+}
+
+h2 {
+  text-align: center;
+  margin: 30px 0 10px;
+  color: black;
+}
+
+.alert-container {
+  margin: 15px auto;
+  max-width: 500px;
+  animation: fadeIn 0.5s ease;
+}
+
+.alert {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.alert.success {
+  background-color: #b9fbc0;
+  color: #065f46;
+  border-left: 6px solid #22c55e;
+}
+
+.alert.error {
+  background-color: #fcdada;
+  color: #991b1b;
+  border-left: 6px solid #ef4444;
+}
+
+.alert.info {
+  background-color: #bfdbfe;
+  color: #1e3a8a;
+  border-left: 6px solid #3b82f6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.proxima-cita {
+  margin: 0 auto;
+  max-width: 400px;
+  width: 90%;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+#formCita {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+#formCita label {
+  font-weight: bold;
+  color: #003366;
+}
+
+#formCita input[type="date"],
+#formCita input[type="time"],
+#formCita select {
+  padding: 10px;
+  border: 1px solid #b5d4e0;
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  background-color: #f9feff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#formCita input:focus,
+#formCita select:focus {
+  border-color: #2595ff;
+  box-shadow: 0 0 6px #6eb4ff;
+  background-color: #ffffff;
+}
+
+#procedimiento {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: linear-gradient(to right, #ffffff, #f5fbff);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  font-weight: bold;
+  color: #004d80;
+  cursor: pointer;
+}
+
+#procedimiento:hover {
+  background-color: #e6f6ff;
+}
+
+#procedimiento option {
+  font-weight: normal;
+  color: #333;
+}
+
+.btn {
+  background-color: #2595ff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin-top: 10px;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #007de3;
+}
+
+#btnCancelar {
+  background-color: #f87171;
+}
+
+#btnCancelar:hover {
+  background-color: #dc2626;
+}
+
+.history-list, .message-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.history-list li,
+.message-list li {
+  margin-bottom: 10px;
+}
+
+.lista-citas-ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.item-cita {
+  position: relative;
+  background-color: #f7fdff;
+  border: 1px solid #cde8f5;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 15px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.info-cita {
+  text-align: left;
+  flex: 1;
+}
+.procedimiento {
+  font-weight: bold;
+  color: #0077b6;
+  background-color: #e0f4ff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+.estado {
+  margin-left: 8px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.estado.pendiente {
+  background-color: #fff6ba;
+  color: #8b8000;
+}
+
+.estado.confirmada {
+  background-color: #b7f7b8;
+  color: #1bd060;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-flotante {
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-flotante:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.btn-flotante.confirmar {
+  background-color: #4ade80;
+}
+
+.btn-flotante.cancelar {
+  background-color: #f87171;
+}
+
+.item-cita.eliminada {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    width: 90%;
+    margin: auto;
+  }
+
+  .alert-container {
+    width: 90%;
+  }
+}
+

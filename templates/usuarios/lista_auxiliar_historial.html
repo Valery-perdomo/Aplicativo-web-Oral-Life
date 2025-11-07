@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>lista pacientes | Oral Life</title>
+    <link rel="stylesheet" href="{% static 'css/lista_auxiliar_historial.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+    <div class="navbar-left">
+        <img src="{% static 'imagenes/logo-oral-life.jpg' %}" alt="Logo" class="logo">
+    </div>
+    <ul class="navbar-links">
+        <li><a href="{% url 'auxiliar_home' %}">Inicio</a></li>
+        <li><a href="{% url 'auxiliar_citas' %}">Citas</a></li>
+        <li><a href="{% url 'crear_historia_clinica' %}">Historia Clínica</a></li>
+        <li><a href="{% url 'lista_historias_clinicas' %}">Lista Historias</a></li>
+        <li><a href="{% url 'lista_chats' %}" class="active">Mensajes</a></li>
+    </ul>
+    <form method="post" action="{% url 'logout' %}" class="logout-form">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Cerrar sesión</button>
+    </form>
+    </nav>
+<main class="container">
+    <h2>Historias Clínicas Registradas</h2>
+
+    {% if historias %}
+    <table class="tabla-historias">
+      <thead>
+        <tr>
+          <th>Paciente</th>
+          <th>Fecha</th>
+          <th>Motivo</th>
+          <th>Diagnóstico</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for historia in historias %}
+        <tr>
+          <td>{{ historia.paciente.nombre }}</td>
+          <td>{{ historia.fecha|date:"d/m/Y" }}</td>
+          <td>{{ historia.motivo_consulta|truncatechars:50 }}</td>
+          <td>{{ historia.diagnostico|default:"—" }}</td>
+          <td class="acciones">
+            <a href="{% url 'detalle_historia_auxiliar' historia.id %}" class="btn-ver">Ver</a>
+            <a href="{% url 'editar_historia_clinica' historia.id %}" class="btn-editar">Editar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="sin-registros">No hay historias clínicas registradas.</p>
+    {% endif %}
+  </main>
+</body>
+</html>

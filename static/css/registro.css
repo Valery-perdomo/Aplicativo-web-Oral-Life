@@ -1,0 +1,50 @@
+body {
+    background-color: #d1f9ff;
+    font-family: Arial, sans-serif;
+}
+
+.logo {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+}
+.registro-box {
+    background-color: white;
+    width: 400px;
+    margin: 50px auto;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.registro-box h2 {
+    margin-bottom: 20px;
+}
+
+.registro-box input[type="text"],
+.registro-box input[type="email"],
+.registro-box input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.registro-box button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.registro-box a {
+    display: block;
+    margin-top: 15px;
+    color: #1a73e8;
+    text-decoration: none;
+}

@@ -1,0 +1,257 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d1f9ff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #333;
+}
+
+h1 {
+    margin-top: 30px;  
+    margin-bottom: 20px; 
+}
+
+h2 {
+    margin-top: 40px;
+    font-size: 24px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 10px 20px;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.navbar-links {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.navbar-links a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #6eb4ff;
+}
+
+.logout-form {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout-btn {
+    background-color: white;
+    color: #101010;
+    font-weight: bold;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #ff5d5d;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 15px;
+    object-fit: contain;
+    display: block;
+}
+
+.container {
+  max-width: 1100px;
+  background: white;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #4ba3ff;
+  font-size: 26px;
+}
+
+.historia-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+details {
+  border: 1px solid #cce7ff;
+  border-radius: 10px;
+  padding: 10px 15px;
+  background: #f8fcff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+  
+}
+
+details[open] {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: #4ba3ff;
+  font-size: 16px;
+  margin-bottom: 8px;
+  list-style: none;
+}
+
+summary::marker {
+  display: none;
+}
+
+details:hover {
+  border-color: #4ba3ff;
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 14px;
+  color: #333;
+}
+
+input, select, textarea {
+  margin-top: 5px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  background-color: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #4ba3ff;
+  box-shadow: #4ba3ff;
+}
+
+textarea {
+  resize: vertical;
+  display: block;   
+  margin: 0 auto;   
+  width: 80%;    
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.checkbox-grid label {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.tratamiento-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.tratamiento-table th {
+  background:#4ba3ff;
+  color: white;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.tratamiento-table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+}
+
+.tratamiento-table input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 6px;
+}
+
+/* Botón guardar */
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-guardar {
+  background-color: #5da3ed;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.btn-guardar:hover {
+  background-color: #83cbff;
+  transform: translateY(-1px);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+}

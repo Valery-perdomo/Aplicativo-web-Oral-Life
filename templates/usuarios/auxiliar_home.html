@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Inicio | Oral Life</title>
+    <link rel="stylesheet" href="{% static 'css/auxiliar_home.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="navbar-left">
+        <img src="{% static 'imagenes/logo-oral-life.jpg' %}" alt="Oral Life" class="logo">
+    </div>
+    <ul class="navbar-links">
+        <li><a href="{% url 'auxiliar_home' %}">Inicio</a></li>
+        <li><a href="{% url 'auxiliar_citas' %}">Citas</a></li>
+        <li><a href="{% url 'crear_historia_clinica' %}">Historia Clínica</a></li>
+        <li><a href="{% url 'lista_historias_clinicas' %}">Lista Historias</a></li>
+        <li><a href="{% url 'lista_chats' %}" class="active">Mensajes</a></li>
+    </ul>
+
+    <form action="{% url 'logout' %}" method="post" class="logout-form">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Cerrar sesión</button>
+    </form>
+</nav>
+
+    
+    <div class="container">
+        <h1>Sistema del Auxiliar</h1>
+    </div>
+
+    
+    <section id="servicios" style="padding:40px 20px; background:#c7f3ff;">
+    <h2 style="text-align:center; margin-bottom:30px;">Nuestros Servicios</h2>
+
+    <div class="servicios-container">
+
+        <div class="card">
+        <img src="{% static 'imagenes/odontologia_general.jpg' %}" alt="Odontología General">
+        <div class="card-title">Odontología General</div>
+        <div class="card-text">
+            <p>Limpiezas dentales (profilaxis y detartraje)</p>
+            <p>Resinas</p>
+            <p>Extracción de cordales</p>
+            <p>Tratamiento de caries</p>
+        </div>
+        </div>
+
+        <div class="card">
+        <img src="{% static 'imagenes/odontologia_estetical.jpg' %}" alt="Odontología Estética">
+        <div class="card-title">Odontología Estética</div>
+        <div class="card-text">
+            <p>Blanqueamiento dental</p>
+            <p>Diseño de sonrisa</p>
+            <p>Carillas de resina y porcelana</p>
+        </div>
+        </div>
+
+        <div class="card">
+        <img src="{% static 'imagenes/ortodoncia.jpg' %}" alt="Ortodoncia">
+        <div class="card-title">Ortodoncia</div>
+        <div class="card-text">
+            <p>Brackets metálicos</p>
+            <p>Brackets estéticos</p>
+            <p>Retenedores</p>
+        </div>
+        </div>
+
+        <div class="card">
+        <img src="{% static 'imagenes/implantologiajpg.jpg' %}" alt="Implantologia">
+        <div class="card-title">Implantologia</div>
+        <div class="card-text">
+            <p>Implantes dentales</p>
+            <p>Rehabilitación sobre implantes</p>
+            <p>Cirugia guiada</p>
+        </div>
+        </div>
+
+        <div class="card">
+        <img src="{% static 'imagenes/periodoncia.jpg' %}" alt="Periodoncia">
+        <div class="card-title">Periodoncia</div>
+        <div class="card-text">
+            <p>Tratamiento de encias</p>
+            <p>Raspado y alisado radicular</p>
+            <p>Cirugia guiada</p>
+        </div>
+        </div>
+
+        <div class="card">
+        <img src="{% static 'imagenes/odontopediatria.jpg' %}" alt="Odontopediatria">
+        <div class="card-title">Odontopediatria</div>
+        <div class="card-text">
+            <p>Atencion dental infantil</p>
+            <p>Sellantes dentales</p>
+            <p>Educacion en higiene oral</p>
+        </div>
+        </div>
+
+        <div class="card">
+        <img src="{% static 'imagenes/cirugia oral.jpg' %}" alt="Cirugia Oral">
+        <div class="card-title">Cirugia Oral</div>
+        <div class="card-text">
+            <p>Extracciones complejas</p>
+            <p>Biopsias orales</p>
+            <p>Mantenimiento periodontal</p>
+        </div>
+        </div>
+
+        <div class="card">
+        <img src="{% static 'imagenes/endodoncia.jpeg' %}" alt="Endodoncia">
+        <div class="card-title">Endodoncia</div>
+        <div class="card-text">
+            <p>Tratamiento de conductos</p>
+            <p>Retratamiento de conductos</p>
+            
+        </div>
+        </div>
+
+        <div class="card">
+        <img src="{% static 'imagenes/rehabilitacion oral.jpg' %}" alt="Rehabilitación Oral">
+        <div class="card-title">Rehabilitación Oral</div>
+        <div class="card-text">
+            <p>Coronas y puentes</p>
+            <p>Protesis removibles y fijas</p>
+            <p>Rehabilitacion total</p>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <footer>
+    <section class="footer">
+        <div class="footer-box">
+            <h2>Oral Life</h2>
+            <div class="social">
+                <a href="https://www.facebook.com/orallife"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.instagram.com/orallife"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <h3>Horario</h3>
+            <ul>
+                <li>Lunes a Viernes: 8:00 AM 12:00 AM - 2:00 PM 6:00 PM</li>
+                <li>Sábados: 9:00 AM - 4:00 PM</li>
+            </ul>
+        </div>
+
+        <div class="footer-box">
+            <h3>Contacto</h3>
+            <div class="contact">
+                <span><i class='bx bxs-map'></i> Calle 12#28-94 Monserrate - Neiva</span> 
+                <span><i class='bx bxs-phone'></i> 3132912333 - 3024509383</span>
+                <span><i class='bx bxs-envelope'></i> contacto@orallife.com</span> 
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <h3>Ubicación</h3>
+            <div class="map-container">
+                <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d996.1457787676372!2d-75.27045573041688!3d2.935454999815058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMsKwNTYnMDcuNiJOIDc1wrAxNicxMS4zIlc!5e0!3m2!1ses-419!2sco!4v1747581650178!5m2!1ses-419!2sco"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+            </div>
+        </div>
+    </section>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    </footer>
+
+</body>
+</html>

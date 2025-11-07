@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Detalle Historia Clínica | Oral Life</title>
+    <link rel="stylesheet" href="{% static 'css/odo_historial_detalle.css' %}">
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="navbar-left">
+        <img src="{% static 'imagenes/logo-oral-life.jpg' %}" alt="Oral Life" class="logo">
+    </div>
+    <ul class="navbar-links">
+        <li><a href="{% url 'odontologo_home' %}">Inicio</a></li>
+        <li><a href="{% url 'odo_citas' %}">Citas</a></li>
+        <li><a href="{% url 'ver_historia_odontologo' %}" class="active">Historia Clínica</a></li>
+    </ul>
+    <form action="{% url 'logout' %}" method="post" class="logout-form">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Cerrar sesión</button>
+    </form>
+</nav>
+
+<div class="container">
+    <h1>Historia Clínica Detallada</h1>
+
+    <div class="historia-detalle">
+
+        <details open>
+            <summary>Datos personales del paciente</summary>
+            <div class="section-grid readonly">
+                <p><b>Nombre:</b> {{ historia.nombre }}</p>
+                <p><b>Fecha de nacimiento:</b> {{ historia.fecha_nacimiento }}</p>
+                <p><b>Edad:</b> {{ historia.edad }}</p>
+                <p><b>Sexo:</b> {{ historia.sexo }}</p>
+                <p><b>Tipo de identificación:</b> {{ historia.tipo_id }}</p>
+                <p><b>N° de identificación:</b> {{ historia.numero_id }}</p>
+                <p><b>Estado civil:</b> {{ historia.estado_civil }}</p>
+                <p><b>Dirección:</b> {{ historia.direccion }}</p>
+                <p><b>Teléfono:</b> {{ historia.telefono }}</p>
+                <p><b>Ocupación:</b> {{ historia.ocupacion }}</p>
+                <p><b>Nivel educativo:</b> {{ historia.nivel_educativo }}</p>
+                <p><b>Nivel socioeconómico:</b> {{ historia.nivel_socioeconomico }}</p>
+                <p><b>Contacto emergencia:</b> {{ historia.contacto_emergencia }}</p>
+                <p><b>Tel. contacto:</b> {{ historia.telefono_emergencia }}</p>
+            </div>
+        </details>
+
+        <details open>
+            <summary>Motivo de consulta</summary>
+            <p>{{ historia.motivo_consulta }}</p>
+        </details>
+
+        <details>
+            <summary>Historia de la enfermedad actual</summary>
+            <p>{{ historia.historia_enfermedad }}</p>
+        </details>
+
+        <details>
+            <summary>Antecedentes</summary>
+            <p><b>Familiares:</b> {{ historia.antecedentes_familiares }}</p>
+            <p><b>Personales:</b> {{ historia.antecedentes_personales }}</p>
+            <p><b>Toxicológicos:</b> {{ historia.antecedentes_tox }}</p>
+        </details>
+
+        <details>
+            <summary>Examen físico y tejidos blandos</summary>
+            <p>{{ historia.examen_fisico }}</p>
+        </details>
+
+        <details>
+            <summary>Odontograma</summary>
+            <img src="{% static 'imagenes/odontograma.png' %}" alt="Odontograma" class="odontograma-img">
+            <p><b>Detalles:</b> {{ historia.odontograma_detalle }}</p>
+        </details>
+
+        <details>
+            <summary>Análisis periodontal</summary>
+            <p>{{ historia.analisis_periodontal }}</p>
+        </details>
+
+        <details>
+            <summary>Índice de placa bacteriana</summary>
+            <p><b>Higiene oral:</b> {{ historia.higiene }}</p>
+        </details>
+
+        <details>
+            <summary>Diagnóstico</summary>
+            <p>{{ historia.diagnostico }}</p>
+        </details>
+
+        <details>
+            <summary>Pronóstico</summary>
+            <p><b>Evaluación:</b> {{ historia.pronostico }}</p>
+        </details>
+
+        <details>
+            <summary>Plan de tratamiento</summary>
+            <pre>{{ historia.plan_tratamiento }}</pre>
+        </details>
+
+        <details>
+            <summary>Firmas</summary>
+            <p><b>Firma del paciente:</b> {{ historia.firma_paciente }}</p>
+            <p><b>Firma del odontólogo:</b> {{ historia.firma_odontologo }}</p>
+            <p><b>Fecha de firma:</b> {{ historia.fecha_firma }}</p>
+        </details>
+    </div>
+
+    <div class="form-actions">
+        <a href="{% url 'ver_historia_odontologo' %}" class="btn-volver">Volver</a>
+    </div>
+</div>
+
+</body>
+</html>

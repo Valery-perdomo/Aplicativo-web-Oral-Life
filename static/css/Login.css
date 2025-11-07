@@ -1,0 +1,232 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d1f9ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 50px;
+    text-align: center;
+}
+h1 {
+    color: #333;
+}
+p {
+    color: #666;
+}
+
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+button {
+    width: 100%;
+    background-color: #80dfe6;
+    color: rgb(0, 0, 0);
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+
+}
+button:hover {
+    background-color: #4fc3f7;
+}
+
+p {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px 0;
+    border: none;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    box-sizing: border-box;
+
+}
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 350px;
+}
+
+.logo {
+    width: 350px; 
+    height: auto;
+    margin-bottom: 20px;
+}
+.register-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register-text a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}
+.formulario-paciente {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #00000033;
+    width: 300px;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.formulario-paciente input[type="text"],
+.formulario-paciente input[type="number"],
+.formulario-paciente input[type="email"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.formulario-paciente button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formulario-paciente button:hover {
+    background-color: #0056b3;
+}
+.messages {
+    list-style: none;
+    padding: 10px;
+    margin: 10px auto;
+    width: 50%;
+    text-align: center;
+}
+
+.messages li {
+    background-color: #d4edda; 
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.messages li {
+    background-color: #d4edda; 
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+a.btn:hover {
+    background-color: #218838;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.confirm-container {
+    text-align: center;
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.btn-eliminar {
+    background-color: #e74c3c; 
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b;
+}
+
+.btn-cancelar {
+    background-color: transparent;
+    color: #3498db;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-cancelar:hover {
+    text-decoration: underline;
+}
+.warning-icon {
+    width: 80px;
+    margin-bottom: 20px;
+}

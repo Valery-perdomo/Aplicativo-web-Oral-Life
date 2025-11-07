@@ -1,0 +1,23 @@
+# === Archivos de Python ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# === Entornos virtuales ===
+venv/
+env/
+Scripts/
+
+# === Archivos temporales ===
+*.log
+*.pot
+.DS_Store
+
+# === Configuración del sistema ===
+.idea/
+.vscode/
+
+# === Archivos generados por Django ===
+/media/
+/staticfiles/

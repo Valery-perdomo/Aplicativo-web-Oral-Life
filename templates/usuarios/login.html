@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login - Oral Life</title>
+    <link rel="stylesheet" href="{% static 'css/Login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <img src="{% static 'imagenes/logo-oral-life.jpg' %}" alt="Logo Consultorio" class="logo">
+
+        <form method="post">
+            {% csrf_token %}
+            <label>Correo electrónico:</label>
+            <input type="text" name="username" required>
+
+            <label>Contraseña:</label>
+            <input type="password" name="password" required>
+
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        
+        <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+
+
+        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
+            <button type="button" style="background-color: white; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
+            <img src="https://developers.google.com/identity/images/g-logo.png" style="height:20px; margin-right:10px;">
+            Iniciar sesión con Google
+            </button>
+    </a>
+
+        <p class="register-link">
+            ¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a>
+
+        </p>
+    </div>
+</body>
+</html>

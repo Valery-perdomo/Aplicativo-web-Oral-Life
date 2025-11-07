@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>mensaje | Oral Life</title>
+  <link rel="stylesheet" href="{% static 'css/chat_pacientes.css' %}">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-titulo">
+        <img src="{% static 'imagenes/logo-oral-life.jpg' %}" alt="Logo Consultorio" class="logo">
+      </div>
+      <nav>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'agendar_cita' %}">Citas</a>
+        <a href="{% url 'historia_clinica' %}">Historia clínica</a>
+        <a href="{% url 'chat' %}">Mensaje</a>
+      </nav>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Cerrar sesión</button>
+      </form>
+    </div>
+  </header>
+  <main>
+    <div class="chat-container">
+      <header class="chat-header">
+        <h2>Chat </h2>
+        <p>Los mensajes se borran automáticamente cada 7 días</p>
+      </header>
+
+      <div class="chat-box">
+        {% for msg in mensajes %}
+          {% if msg.remitente == request.user %}
+            <div class="mensaje propio">{{ msg.contenido }}</div>
+          {% else %}
+            <div class="mensaje otro">{{ msg.contenido }}</div>
+          {% endif %}
+        {% empty %}
+          <p class="no-msg">No hay mensajes todavía.</p>
+        {% endfor %}
+      </div>
+
+      <form method="POST" class="chat-form">
+        {% csrf_token %}
+        <textarea name="mensaje" placeholder="Escribe un mensaje..." required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>
+
