@@ -21,3 +21,4 @@ Scripts/
 # === Archivos generados por Django ===
 /media/
 /staticfiles/
+.env

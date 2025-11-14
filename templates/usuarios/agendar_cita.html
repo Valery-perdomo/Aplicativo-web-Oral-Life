@@ -30,14 +30,14 @@
     <h2><strong>Hola {{ nombre_paciente|title }}</strong></h2>
     
     {% if messages %}
-  <div class="alert-container">
-    {% for message in messages %}
-      <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
-        {{ message }}
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
+    <div class="alert-container">
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
 
     <div class="section-grid">
       <div class="card proxima-cita">
@@ -65,10 +65,10 @@
           {% csrf_token %}
           <div class="form-flex">
             <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required>
+            <input type="date" id="fecha" name="fecha" required min="{{ today }}" />
 
             <label for="hora">Hora:</label>
-            <input type="time" id="hora" name="hora" required min="08:00" max="18:00">
+            <input type="time" id="hora" name="hora" required min="{{ hora_actual }}" max="18:00" />
 
             <label for="procedimiento">Procedimiento:</label>
             <select name="procedimiento" id="procedimiento" required>
@@ -96,8 +96,8 @@
             {% if cita.estado != 'cancelada' %}
             <li class="item-cita">
               <div class="info-cita">
-                {{ cita.fecha|date:"d/m/Y" }} a las {{ cita.hora|time:"H:i" }} —
-              <span class="procedimiento">{{ cita.get_procedimiento_display }}</span> —
+                {{ cita.fecha|date:"d/m/Y" }} a las {{ cita.hora|time:"H:i" }} — 
+              <span class="procedimiento">{{ cita.get_procedimiento_display }}</span> — 
               <strong>
               {% if cita.estado == 'confirmada' %}
               <span class="estado confirmada">Confirmada</span>
@@ -148,6 +148,19 @@
     function confirmarCancelacion() {
       return confirm("¿Deseas cancelar esta cita?");
     }
+  </script>
+
+  <script>
+    // Establecer la fecha mínima a hoy
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('fecha').setAttribute('min', today);
+
+    // Establecer la hora mínima a la hora actual
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const currentTime = `${hours}:${minutes}`;
+    document.getElementById('hora').setAttribute('min', currentTime);
   </script>
 
   <script src="{% static 'js/paciente.js' %}"></script>

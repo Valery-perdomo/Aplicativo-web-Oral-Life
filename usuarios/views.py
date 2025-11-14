@@ -100,7 +100,10 @@ def ver_historia_paciente(request):
 
 @login_required
 def agendar_cita(request):
-    from datetime import datetime, timedelta
+    # Obtener fecha y hora actual
+    ahora = datetime.now()
+    fecha_actual = ahora.date()
+    hora_actual = ahora.strftime('%H:%M')
 
     try:
         paciente = Paciente.objects.get(user=request.user)
@@ -166,7 +169,10 @@ def agendar_cita(request):
         'nombre_paciente': paciente.nombre,
         'proxima_cita': proxima_cita,
         'citas': citas,
+        'today': fecha_actual,
+        'hora_actual': hora_actual
     })
+
 
 @login_required
 def actualizar_estado_cita_paciente(request, cita_id, nuevo_estado):

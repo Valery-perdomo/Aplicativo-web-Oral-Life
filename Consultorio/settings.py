@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import ssl
 
-# ⚙️ Arreglo temporal para bug SSL en Python 3.13 (Windows)
+# ⚙ Arreglo temporal para bug SSL en Python 3.13 (Windows)
 ssl._create_default_https_context = ssl._create_unverified_context
 
 from pathlib import Path
@@ -153,12 +153,15 @@ AUTHENTICATION_BACKENDS = (
 
 #Claves de google OAuth 
 import os
+from dotenv import load_dotenv
 
+# Cargar las variables de entorno desde el archivo .env
+load_dotenv()
 
-
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://127.0.0.1:8000/auth/complete/google-oauth2/'
-
+# Usar las variables de entorno para obtener las credenciales de Google OAuth
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI')
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
@@ -170,9 +173,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'soporteorallife@gmail.com'  # tu correo real
-EMAIL_HOST_PASSWORD = 'gcokomtifdtxurbr' #contraseña de aplicación
-
-
-
-
-
+EMAIL_HOST_PASSWORD = 'dbbqrhinihfrnbrw' #contraseña de aplicación
